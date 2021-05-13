@@ -10,7 +10,7 @@ function App() {
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=1&sparkline=false")
+    axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false")
       .then(res => {
         setCoins(res.data)
         console.log(res.data);
@@ -42,9 +42,10 @@ function App() {
             name={coin.name}
             image={coin.image}
             symbol={coin.symbol}
-            volume={coin.market_cap}
+            marketcap={coin.market_cap}
             price={coin.current_price}
-
+            priceChange={coin.price_change_percentage_24h}
+            volume={coin.total_volume}
           />
         )
       })}
